@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{387D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyWebApi", "Backend\MyWebApi\MyWebApi.csproj", "{1F746317-1C6B-46D0-9F8B-B5B454F8CC2C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWebApi.Test", "Backend\MyWebApi.Test\MyWebApi.Test.csproj", "{3D2A4211-DDF3-429E-BE18-E1DD9CACD1A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +19,17 @@ Global
 		{1F746317-1C6B-46D0-9F8B-B5B454F8CC2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F746317-1C6B-46D0-9F8B-B5B454F8CC2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F746317-1C6B-46D0-9F8B-B5B454F8CC2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D2A4211-DDF3-429E-BE18-E1DD9CACD1A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D2A4211-DDF3-429E-BE18-E1DD9CACD1A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D2A4211-DDF3-429E-BE18-E1DD9CACD1A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D2A4211-DDF3-429E-BE18-E1DD9CACD1A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1F746317-1C6B-46D0-9F8B-B5B454F8CC2C} = {387D5347-ACEB-4104-8633-75423D02256B}
+		{3D2A4211-DDF3-429E-BE18-E1DD9CACD1A3} = {387D5347-ACEB-4104-8633-75423D02256B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {845CEC65-A78E-4129-86C6-8CCDD88DD21C}
