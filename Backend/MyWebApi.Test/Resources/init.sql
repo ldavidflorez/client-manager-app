@@ -1,12 +1,5 @@
--- Create a user, database and assing permissions 
-CREATE USER myuser WITH PASSWORD 'mypassword';
-CREATE DATABASE clientsdb;
-GRANT ALL PRIVILEGES ON DATABASE clientsdb TO myuser;
-GRANT USAGE ON SCHEMA public TO myuser;
-GRANT CREATE ON SCHEMA public TO myuser;
-GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO myuser;
-ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO myuser;
-
+-- Drop table if exists
+DROP TABLE IF EXISTS clients;
 
 -- Create clients table
 CREATE TABLE clients (
@@ -36,6 +29,8 @@ VALUES
 ('Alice', 'Johnson', 'ACC4567890', 500.00, '1985-07-20', '101 Maple St, Star City, TX', '555-7890', 'alice.johnson@example.com', 'individual', 'single', 'ID564738291', 'Graphic Designer', 'Female', 'American'),
 ('Bob', 'Brown', 'ACC5678901', 980.25, '1978-11-11', '202 Birch St, Central City, FL', '555-8901', 'bob.brown@example.com', 'individual', 'divorced', 'ID837465920', 'Marketing Manager', 'Male', 'American');
 
+-- Drop table if exists
+DROP TABLE IF EXISTS app_users;
 
 -- Create app_users table
 CREATE TABLE app_users (
