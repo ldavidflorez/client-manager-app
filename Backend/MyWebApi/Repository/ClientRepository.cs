@@ -24,6 +24,12 @@ namespace MyWebApi.Repository
             return result;
         }
 
+        public async Task<Client> GetByName(string name)
+        {
+            var result = await _context.Clients.FirstOrDefaultAsync(c => c.Email == name);
+            return result;
+        }
+
         public async Task Add(Client client)
         {
             await _context.Clients.AddAsync(client);

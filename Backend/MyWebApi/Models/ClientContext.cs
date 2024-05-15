@@ -10,5 +10,6 @@ namespace MyWebApi.Models
         }
 
         public DbSet<Client> Clients { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; } 
     }
 }

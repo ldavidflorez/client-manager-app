@@ -30,6 +30,18 @@ namespace MyWebApi.Services
             return client;
         }
 
+        public async Task<Client> GetByName(string name)
+        {
+            var client = await _clientRepository.GetByName(name);
+
+            if (client == null)
+            {
+                return null;
+            }
+
+            return client;
+        }
+
         public async Task<Client> Add(Client client)
         {
             await _clientRepository.Add(client);
@@ -65,7 +77,7 @@ namespace MyWebApi.Services
             _clientRepository.Update(oldClient);
             await _clientRepository.Save();
 
-            return client;
+            return oldClient;
         }
 
         public async Task<Client> Delete(int id)
