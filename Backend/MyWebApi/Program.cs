@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MyWebApi.Models;
 using MyWebApi.Repository;
+using MyWebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,8 @@ builder.Services.AddDbContext<ClientContext>(options =>
 });
 
 builder.Services.AddScoped<ICommonRepository<Client>, ClientRepository>();
+
+builder.Services.AddScoped<ICommonService<Client, Client, Client>, ClientService>();
 
 builder.Services.AddControllers();
 
