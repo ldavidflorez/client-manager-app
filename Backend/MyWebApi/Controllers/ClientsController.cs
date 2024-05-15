@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using MyWebApi.Models;
-using MyWebApi.Repository;
 using MyWebApi.Services;
 
 namespace MyWebApi.Controllers
@@ -18,35 +17,43 @@ namespace MyWebApi.Controllers
 
         // GET: api/clients
         [HttpGet]
-        public async Task<IEnumerable<Client>> Get()
+        public async Task<ActionResult<IEnumerable<Client>>> Get()
         {
             var result = await _clientService.GetAll();
-            return result;
+            return Ok(result);
         }
 
         // GET: api/clients/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<Client>> GetById(int id)
         {
-            return "client" + id;
+            var client = await _clientService.GetById(id);
+            return client == null ? NotFound() : Ok(client);
         }
 
         // POST: api/clients
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult<Client>> Post([FromBody] Client newClient)
         {
+            var client = await _clientService.Add(newClient);
+            return CreatedAtAction(nameof(GetById), new { id = client.Id }, client);
         }
 
         // PUT: api/clients/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<ActionResult<Client>> Put(int id, [FromBody] Client oldClient)
         {
+            var client = await _clientService.Update(id, oldClient);
+
+            return client == null ? NotFound() : Ok(client);
         }
 
         // DELETE: api/clients/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<ActionResult<Client>> Delete(int id)
         {
+            var client = await _clientService.Delete(id);
+            return client == null ? NotFound() : Ok(client);
         }
     }
 }
