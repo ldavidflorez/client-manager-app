@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using MyWebApi.Models;
 
 namespace MyWebApi.Controllers
 {
@@ -7,11 +8,18 @@ namespace MyWebApi.Controllers
     [Route("api/[controller]")]
     public class ClientsController : ControllerBase
     {
+        private ClientContext _context;
+
+        public ClientsController(ClientContext context)
+        {
+            _context = context;
+        }
         // GET: api/clients
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IEnumerable<Client>> Get()
         {
-            return new string[] { "client1", "client2" };
+            var result = await _context.Clients.ToListAsync();
+            return result;
         }
 
         // GET: api/clients/5
