@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyWebApi.Models;
 using MyWebApi.Services;
@@ -17,6 +18,7 @@ namespace MyWebApi.Controllers
 
         // GET: api/clients
         [HttpGet]
+        [Authorize(Roles = "admin, consultant")]
         public async Task<ActionResult<IEnumerable<Client>>> Get()
         {
             var result = await _clientService.GetAll();
@@ -25,6 +27,7 @@ namespace MyWebApi.Controllers
 
         // GET: api/clients/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "admin, consultant")]
         public async Task<ActionResult<Client>> GetById(int id)
         {
             var client = await _clientService.GetById(id);
@@ -33,6 +36,7 @@ namespace MyWebApi.Controllers
 
         // POST: api/clients
         [HttpPost]
+        [Authorize(Roles = "admin, consultant")]
         public async Task<ActionResult<Client>> Post([FromBody] Client newClient)
         {
             var client = await _clientService.Add(newClient);
@@ -41,6 +45,7 @@ namespace MyWebApi.Controllers
 
         // PUT: api/clients/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "admin, consultant")]
         public async Task<ActionResult<Client>> Put(int id, [FromBody] Client oldClient)
         {
             var client = await _clientService.Update(id, oldClient);
@@ -50,8 +55,16 @@ namespace MyWebApi.Controllers
 
         // DELETE: api/clients/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<Client>> Delete(int id)
         {
+            var user = HttpContext.User;
+
+            if (!user.IsInRole("admin"))
+            {
+                return StatusCode(403);
+            }
+
             var client = await _clientService.Delete(id);
             return client == null ? NotFound() : Ok(client);
         }
