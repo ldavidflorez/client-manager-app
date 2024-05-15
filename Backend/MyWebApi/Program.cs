@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MyWebApi.Models;
+using MyWebApi.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ builder.Services.AddDbContext<ClientContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("ClientConnection"));
 });
+
+builder.Services.AddScoped<ICommonRepository<Client>, ClientRepository>();
 
 builder.Services.AddControllers();
 

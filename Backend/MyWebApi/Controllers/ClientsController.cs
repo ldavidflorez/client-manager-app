@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using MyWebApi.Models;
+using MyWebApi.Repository;
 
 namespace MyWebApi.Controllers
 {
@@ -8,17 +8,18 @@ namespace MyWebApi.Controllers
     [Route("api/[controller]")]
     public class ClientsController : ControllerBase
     {
-        private ClientContext _context;
+        private ICommonRepository<Client> _clientRepository;
 
-        public ClientsController(ClientContext context)
+        public ClientsController(ICommonRepository<Client> clientRepository)
         {
-            _context = context;
+            _clientRepository = clientRepository;
         }
+
         // GET: api/clients
         [HttpGet]
         public async Task<IEnumerable<Client>> Get()
         {
-            var result = await _context.Clients.ToListAsync();
+            var result = await _clientRepository.GetAll();
             return result;
         }
 
