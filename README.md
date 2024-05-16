@@ -16,12 +16,18 @@ Este proyecto consta básicamente de un Web API para la gestión de datos de cli
      docker pull ldavidflorez/client-manager-app:v3
 
      # Start container
-     docker run -d --network host -e ClientConnection="Host=localhost;Port=5432;Database=clientsdb;Username=myuser;Password=mypassword;" --name webapi client-manager-app
+      docker run -d \
+      --network host \
+      -e ClientConnection="Host=localhost;Port=5432;Database=clientsdb;Username=myuser;Password=mypassword;" \
+      --name \webapi client-manager-app
      ```
 
    - Si está ejecutando en un entorno productivo, utilice el siguiente comando, reemplazando `YOUR_DB_HOST_IP` por la IP del servidor donde está alojada la base de datos:
      ```
-     docker run -d -e ClientConnection="Host=YOUR_DB_HOST_IP;Port=5432;Database=clientsdb;Username=myuser;Password=mypassword;" -p 5001:5001 --name webapi client-manager-app
+      docker run -d \
+      -e ClientConnection="Host=YOUR_DB_HOST_IP;Port=5432;Database=clientsdb;Username=myuser;Password=mypassword;" \
+      -p 5001:5001 \
+      --name webapi client-manager-app
      ```
 
     - Si desean ver el archivo `Dockerfile` con el que se construyo la imagen, lo pueden encontrar en la ruta `Backend/MyWebApi/Dockerfile`
