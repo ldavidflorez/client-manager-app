@@ -38,5 +38,7 @@ namespace MyWebApi.Models
         public string? Gender { get; set; }
         [Column("nationality")]
         public string? Nationality { get; set; }
+
+        // TODO: add new column for identify user that inserts the client (create FK relationship on DB)
     }
 }

@@ -9,20 +9,25 @@ using MyWebApi.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+// Add DB connection with EF
 builder.Services.AddDbContext<ClientContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("ClientConnection"));
+    options.UseNpgsql(Environment.GetEnvironmentVariable("ClientConnection"));
 });
 
+// Inject repository and client service
 builder.Services.AddScoped<ICommonRepository<Client>, ClientRepository>();
 builder.Services.AddScoped<ICommonService<Client, Client, Client>, ClientService>();
 
+// Inject repository and user service (for authentication and autorization)
 builder.Services.AddScoped<ICommonRepository<AppUser>, AppUserRepository>();
 builder.Services.AddScoped<ICommonService<AppUser, AppUser, AppUser>, AppUserService>();
 
 builder.Services.AddControllers();
 
+// Secret key for sing JWT tokens
 var secretKey = builder.Configuration.GetValue<string>("SecretKey");
+// JWT Bearer token configuration
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

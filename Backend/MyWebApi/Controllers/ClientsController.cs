@@ -16,7 +16,7 @@ namespace MyWebApi.Controllers
             _clientService = clientService;
         }
 
-        // GET: api/clients
+        // GET: api/clients (obtain all clients registered)
         [HttpGet]
         [Authorize(Roles = "admin, consultant")]
         public async Task<ActionResult<IEnumerable<Client>>> Get()
@@ -25,7 +25,7 @@ namespace MyWebApi.Controllers
             return Ok(result);
         }
 
-        // GET: api/clients/5
+        // GET: api/clients/5 (obtain client by id)
         [HttpGet("{id}")]
         [Authorize(Roles = "admin, consultant")]
         public async Task<ActionResult<Client>> GetById(int id)
@@ -34,26 +34,27 @@ namespace MyWebApi.Controllers
             return client == null ? NotFound() : Ok(client);
         }
 
-        // POST: api/clients
+        // POST: api/clients (create new client in DB)
         [HttpPost]
         [Authorize(Roles = "admin, consultant")]
         public async Task<ActionResult<Client>> Post([FromBody] Client newClient)
         {
+            // TODO: add scheme validation to newClient
             var client = await _clientService.Add(newClient);
             return CreatedAtAction(nameof(GetById), new { id = client.Id }, client);
         }
 
-        // PUT: api/clients/5
+        // PUT: api/clients/5 (update a existing client)
         [HttpPut("{id}")]
         [Authorize(Roles = "admin, consultant")]
         public async Task<ActionResult<Client>> Put(int id, [FromBody] Client oldClient)
         {
+            // TODO: add scheme validation to oldClient
             var client = await _clientService.Update(id, oldClient);
-
             return client == null ? NotFound() : Ok(client);
         }
 
-        // DELETE: api/clients/5
+        // DELETE: api/clients/5 (delete existing client)
         [HttpDelete("{id}")]
         [Authorize(Roles = "admin")]
         public async Task<ActionResult<Client>> Delete(int id)

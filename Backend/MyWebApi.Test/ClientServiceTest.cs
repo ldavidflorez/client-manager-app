@@ -5,6 +5,7 @@ using MyWebApi.Services;
 
 namespace MyWebApi.Tests
 {
+    // TODO: test controllers, no services
     [TestFixture]
     public class ClientServiceTest
     {

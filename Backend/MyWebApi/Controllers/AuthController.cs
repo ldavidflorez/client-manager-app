@@ -27,6 +27,7 @@ namespace MyWebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Authenticate([FromBody]Credential credential)
         {
+            // Get current user
             var user = await _userService.GetByName(credential.UserName);
             
             if (user == null)
@@ -37,12 +38,12 @@ namespace MyWebApi.Controllers
             // Verify the credential
             if (credential.UserName == user.Username && EncryptionHelper.EncryptString(credential.Password) == user.Password)
             {
-                // Creating the security context
+                // Creating the claims
                 var claims = new List<Claim> {
                     new Claim(ClaimTypes.Name, user.Username), // Name claim
                     new Claim(ClaimTypes.Role, user.Role)  // Role claim
                 };
-
+                // Expiration date for JWT token (30 minutes)
                 var expiresAt = DateTime.UtcNow.AddMinutes(30);
 
                 return Ok(new
@@ -59,7 +60,7 @@ namespace MyWebApi.Controllers
         {
             var secretKey = Encoding.ASCII.GetBytes(configuration.GetValue<string>("SecretKey")??"");
 
-            // generate the JWT
+            // Generate the JWT
             var jwt = new JwtSecurityToken(
                     claims: claims,
                     notBefore: DateTime.UtcNow,
