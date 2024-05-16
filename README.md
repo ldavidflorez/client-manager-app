@@ -24,6 +24,8 @@ Este proyecto consta básicamente de un Web API para la gestión de datos de cli
      docker run -d -e ClientConnection="Host=YOUR_DB_HOST_IP;Port=5432;Database=clientsdb;Username=myuser;Password=mypassword;" -p 5001:5001 --name webapi client-manager-app
      ```
 
+    - Si desean ver el archivo `Dockerfile` con el que se construyo la imagen, lo pueden encontrar en la ruta `Backend/MyWebApi/Dockerfile`
+
 3. **Probar la API**:
    - Utilice el archivo de colección de Postman presente en `Backend/MyWebApi/Resources` (archivo `PostmanCollection.json`). Este archivo define los siguientes endpoints:
      - `POST /api/Auth`: para autenticación, donde se obtiene un JWT. Ejemplo de JSON de solicitud:
