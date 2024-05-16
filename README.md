@@ -85,7 +85,7 @@ Este proyecto consta básicamente de un Web API para la gestión de datos de cli
 
    - Es necesario configurar un header que contenga el JWT retornado por `/api/Auth`, como se muestra en el siguiente ejemplo:
      ```
-     Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+     Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
      ```
 
    - Tenga en cuenta que existen dos tipos de roles: `admin` y `consultant`, teniendo ambos los mismos privilegios, excepto el rol `admin` que es el único que puede borrar clientes.
