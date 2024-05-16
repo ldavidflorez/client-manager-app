@@ -43,7 +43,7 @@ namespace MyWebApi.Controllers
                     new Claim(ClaimTypes.Role, user.Role)  // Role claim
                 };
 
-                var expiresAt = DateTime.UtcNow.AddMinutes(10);
+                var expiresAt = DateTime.UtcNow.AddMinutes(30);
 
                 return Ok(new
                 {
