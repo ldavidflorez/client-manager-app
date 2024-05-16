@@ -19,9 +19,9 @@ Este proyecto consta básicamente de un Web API para la gestión de datos de cli
      docker run -d --network host -e ClientConnection="Host=localhost;Port=5432;Database=clientsdb;Username=myuser;Password=mypassword;" --name webapi client-manager-app
      ```
 
-   - Si está ejecutando en un entorno productivo, utilice el siguiente comando, reemplazando `YOUR_HOST_IP` por la IP del servidor donde está alojada la base de datos:
+   - Si está ejecutando en un entorno productivo, utilice el siguiente comando, reemplazando `YOUR_DB_HOST_IP` por la IP del servidor donde está alojada la base de datos:
      ```
-     docker run -d -e ClientConnection="Host=YOUR_HOST_IP;Port=5432;Database=clientsdb;Username=myuser;Password=mypassword;" -p 5001:5001 --name webapi client-manager-app
+     docker run -d -e ClientConnection="Host=YOUR_DB_HOST_IP;Port=5432;Database=clientsdb;Username=myuser;Password=mypassword;" -p 5001:5001 --name webapi client-manager-app
      ```
 
 3. **Probar la API**:
